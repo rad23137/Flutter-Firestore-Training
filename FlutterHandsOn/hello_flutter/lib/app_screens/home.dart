@@ -10,8 +10,10 @@ class Home extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         color: Colors.deepPurple,
-        width:200.0, //always in decimal
-        height:100.0, //always in decimal
+  //  width:200.0, //always in decimal
+   //     height:100.0, //always in decimal
+    //    margin:EdgeInsets.all(20.0), //all constructor apply margin in all sides
+      margin:EdgeInsets.only(left:35.0,top: 100.0), //only constructor apply margin on given side like here in left side
         child: Text("Flight", textDirection: TextDirection.ltr), //Text
       ),//Container
     ); //Center

@@ -7,6 +7,7 @@ import 'app_screens/home.dart';
 
 void main() {
   runApp(new MaterialApp(
+    debugShowCheckedModeBanner: false,
     title: "Exploring UI Widgets",
     home: new Home(), // Calling Home Class Build Function
   ) //MaterialApp
