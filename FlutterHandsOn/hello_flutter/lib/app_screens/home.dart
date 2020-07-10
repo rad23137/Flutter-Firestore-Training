@@ -85,8 +85,9 @@ class Home extends StatelessWidget {
                           ) //Text
                       ), //expanded
                 ],
-              ),//Row
-               FlightImageAsset()
+              ), //Row
+              FlightImageAsset(), //show image of flight
+              FlightBookingButton() //show a raised button of book your flight
             ], //column widget
           ) //column
           ), //Container
@@ -94,13 +95,48 @@ class Home extends StatelessWidget {
   }
 }
 
+//class to return Image to be the third element of column Widget
 class FlightImageAsset extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Having image from images folder by updating in pubspac.yaml
     AssetImage assetImage = AssetImage('images/flight.png');
     //specifying image and its width and height
-    Image image = Image(image: assetImage,width: 250.0, height:250.0);
+    Image image = Image(image: assetImage, width: 250.0, height: 250.0);
     return Container(child: image);
+  }
+}
+
+class FlightBookingButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.only(top: 30.0),
+        width: 250.0,
+        height: 50.0,
+        // Should mention onPressed in Raised Button it is mandatory.
+        child: RaisedButton(
+            color: Colors.deepOrange,
+            child: Text("Book your Flight",
+                style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white,
+                    fontFamily: 'Raleway',
+                    fontWeight: FontWeight.w700)), //textStyle
+            elevation: 6.0,
+            onPressed: () =>
+              bookFlight(context) ), // Raised Button
+        ); //container
+  }
+
+  void bookFlight(BuildContext context) {
+    var alertDialog = AlertDialog(
+        title: Text("Flight Booked Successfully"),
+        content: Text("Have a pleasant flight")); //alertDialog
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => alertDialog
+      ); //ShowDialog function to show the alertDialog
   }
 }
