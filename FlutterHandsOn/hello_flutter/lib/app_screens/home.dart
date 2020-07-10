@@ -85,10 +85,22 @@ class Home extends StatelessWidget {
                           ) //Text
                       ), //expanded
                 ],
-              )
+              ),//Row
+               FlightImageAsset()
             ], //column widget
           ) //column
           ), //Container
     ); //Center
+  }
+}
+
+class FlightImageAsset extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Having image from images folder by updating in pubspac.yaml
+    AssetImage assetImage = AssetImage('images/flight.png');
+    //specifying image and its width and height
+    Image image = Image(image: assetImage,width: 250.0, height:250.0);
+    return Container(child: image);
   }
 }
