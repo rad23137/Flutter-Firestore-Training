@@ -125,10 +125,11 @@ class FlightBookingButton extends StatelessWidget {
                     fontWeight: FontWeight.w700)), //textStyle
             elevation: 6.0,
             onPressed: () =>
-              bookFlight(context) ), // Raised Button
+              bookFlight(context) )// calling alertdialog, // Raised Button
         ); //container
   }
 
+// function to be called on pressing the raised button 
   void bookFlight(BuildContext context) {
     var alertDialog = AlertDialog(
         title: Text("Flight Booked Successfully"),
