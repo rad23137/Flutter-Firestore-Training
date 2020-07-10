@@ -13,8 +13,16 @@ class Home extends StatelessWidget {
   //  width:200.0, //always in decimal
    //     height:100.0, //always in decimal
     //    margin:EdgeInsets.all(20.0), //all constructor apply margin in all sides
-      margin:EdgeInsets.only(left:35.0,top: 100.0), //only constructor apply margin on given side like here in left side
-        child: Text("Flight", textDirection: TextDirection.ltr), //Text
+    //  margin:EdgeInsets.only(left:35.0,top: 100.0), //only constructor apply margin on given side like here in left side
+        child: Text("Flight", textDirection: TextDirection.ltr,
+        style:TextStyle(
+          decoration: TextDecoration.none,
+          fontSize: 70.0,
+          fontFamily: 'Raleway', //adding custom fonts by adding them in a folder fonts
+          fontWeight:FontWeight.w700, // weight tell which font of font family to apply 
+          //fontStyle: FontStyle.italic //to show style of a font in font family
+
+        )), //Text
       ),//Container
     ); //Center
   }
