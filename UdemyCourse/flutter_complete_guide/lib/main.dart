@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/question.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,7 +42,7 @@ class MyAppState extends State<MyApp>{
             appBar: AppBar(title: Text("My First app")),
             body: Column(
               children: <Widget>[
-                Text(questions[questionIndex]), // Text will change on click of button
+                Question(questions[questionIndex]), // Text will change on click of button
                 RaisedButton(
                   child: Text("Answer 1"),
                   onPressed: answerQuestion,
