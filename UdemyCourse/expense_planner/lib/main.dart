@@ -16,6 +16,8 @@ class MyHome extends StatelessWidget {
         amount: 16.53,
         date: DateTime.now())
   ];
+  String titleInput;
+  String amountInput;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,39 +28,44 @@ class MyHome extends StatelessWidget {
           ),
           body: Column(
               //mainAxisAlignment: MainAxisAlignment  .spaceEvenly, // position element from top to bottom in columns vice versa in rows
-              crossAxisAlignment: CrossAxisAlignment.stretch, // position element from left to right in columns vice versa in rows
+              crossAxisAlignment: CrossAxisAlignment
+                  .stretch, // position element from left to right in columns vice versa in rows
               children: <Widget>[
                 Container(
                     width: double.infinity,
                     child: Card(
                       color: Colors.blue,
                       child: Text("Chart!"),
-                    )
-                    ),
-
-                    Card(
-                      elevation:5,
-                      child: Container(
-                        padding:EdgeInsets.all(10),
-                       child: Column(
-                         crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                      TextField(
-                        decoration: InputDecoration(labelText:'Title'),
-                      ),
-                      TextField(
-                        decoration: InputDecoration(labelText: 'Amount'),
-                      ),
-
-                      FlatButton(child: Text("Add Transaction"),
-                      onPressed: () {},
-                      textColor: Colors.purple,
-                      )
-
-                    ],
-                    )
-                     )
-                    ),
+                    )),
+                Card(
+                    elevation: 5,
+                    child: Container(
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: <Widget>[
+                            TextField(
+                              decoration: InputDecoration(labelText: 'Title'),
+                              onChanged: (val) {
+                                titleInput = val; //storing user input in a property
+                              },
+                            ),
+                            TextField(
+                              decoration: InputDecoration(labelText: 'Amount'),
+                              onChanged: (val) {
+                                amountInput = val; // storing user input in a property
+                              },
+                            ),
+                            FlatButton(
+                              child: Text("Add Transaction"),
+                              onPressed: () {
+                                print(titleInput);
+                                print(amountInput);
+                              },
+                              textColor: Colors.purple,
+                            )
+                          ],
+                        ))),
                 Column(
                   children: transactions.map((tx) {
                     return Card(
@@ -92,8 +99,7 @@ class MyHome extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
                                 )),
-                            Text(
-                              DateFormat('yyyy/MMM/dd').format(tx.date),
+                            Text(DateFormat('yyyy/MMM/dd').format(tx.date),
                                 style: TextStyle(
                                     fontSize: 16, color: Colors.grey)),
                           ],
