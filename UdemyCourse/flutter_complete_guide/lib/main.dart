@@ -55,10 +55,14 @@ class _MyAppState extends State<MyApp>{
             appBar: AppBar(title: Text("My First app")),
             body: Column(
               children: <Widget>[
-                Question(questions[_questionIndex]), // Text will change on click of button
-               Answer(_answerQuestion), //_answerQuestion is a callback function passing in answer widget
-               Answer(_answerQuestion),
-               Answer(_answerQuestion)
+                Question(questions[_questionIndex]['questionText']), // Text will change on click of button
+               ...(questions[_questionIndex]['answers'] as List<String>).map((answer){
+               return Answer(_answerQuestion,answer);
+               }).toList()
+               , //_answerQuestion is a callback function passing in answer widget
+               // ... is a spread operator which add values of a list into a list
+               // map function is used to map every value of list answer into a list of widgets
+              
                 
               ],
             )));
