@@ -16,8 +16,12 @@ class MyHome extends StatelessWidget {
         amount: 16.53,
         date: DateTime.now())
   ];
-  String titleInput;
-  String amountInput;
+  //String titleInput;
+  //String amountInput;
+
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,21 +50,25 @@ class MyHome extends StatelessWidget {
                           children: <Widget>[
                             TextField(
                               decoration: InputDecoration(labelText: 'Title'),
-                              onChanged: (val) {
-                                titleInput = val; //storing user input in a property
-                              },
+                              controller: titleController,
+                              // onChanged: (val) {
+                              //   titleInput =
+                              //       val; //storing user input in a property
+                              // },
                             ),
                             TextField(
                               decoration: InputDecoration(labelText: 'Amount'),
-                              onChanged: (val) {
-                                amountInput = val; // storing user input in a property
-                              },
+                              controller: amountController,
+                              // onChanged: (val) {
+                              //   amountInput =
+                              //       val; // storing user input in a property
+                              // },
                             ),
                             FlatButton(
                               child: Text("Add Transaction"),
                               onPressed: () {
-                                print(titleInput);
-                                print(amountInput);
+                                print(titleController.text);
+                                print(amountController.text);
                               },
                               textColor: Colors.purple,
                             )
