@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget
   Widget build(BuildContext context)
   {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
     title: "Flutter App",
     theme: ThemeData(
       primarySwatch: Colors.purple,  //add theme to the app
@@ -54,14 +55,14 @@ class MyHome extends StatefulWidget {
 
 class _MyHomeState extends State<MyHome> {
   final List<Transaction> _userTransaction = [
-    Transaction(
-        id: 't1', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
-    Transaction(
-      id: 't2',
-      title: 'Weekely Groceries',
-      amount: 16.53,
-      date: DateTime.now(),
-    )
+    // Transaction(
+    //     id: 't1', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Weekely Groceries',
+    //   amount: 16.53,
+    //   date: DateTime.now(),
+    // )
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {

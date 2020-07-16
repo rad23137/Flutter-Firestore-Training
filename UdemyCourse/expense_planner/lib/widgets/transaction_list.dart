@@ -10,7 +10,20 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 500,
-      child: ListView.builder(
+      child: transaction.isEmpty? 
+    Column(
+          children:<Widget>[
+            Text("No Transactions added Yet!", style: Theme.of(context).textTheme.headline6),
+            SizedBox(height:10), // This is to create a box which shows gap between text and image we are just giving a height no content
+            Container(
+              height:200,
+              child:Image.asset('assets/images/waiting.png',fit: BoxFit.cover),
+            )
+             
+          ]
+        ) :
+         
+       ListView.builder(
         itemCount:transaction.length,
          itemBuilder: (context, index) {
         return Card(
