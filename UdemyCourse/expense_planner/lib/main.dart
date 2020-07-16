@@ -4,9 +4,26 @@ import './models/transaction.dart';
 import 'widgets/transaction_list.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget
+{
+  @override
+  Widget build(BuildContext context)
+  {
+    return MaterialApp(
     title: "Flutter App",
-    home: MyHome()));
+    theme: ThemeData(
+      primarySwatch: Colors.purple,  //add theme to the app
+      accentColor: Colors.amber, //alternate color if its not available primary color is used
+      
+    ),
+    home: MyHome()
+    );
+
+
+  }
 }
 
 class MyHome extends StatefulWidget {
