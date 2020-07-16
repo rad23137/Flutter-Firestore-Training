@@ -21,6 +21,9 @@ class MyHome extends StatelessWidget {
       home: Scaffold(
           appBar: AppBar(
             title: Text("Fultter App"),
+            actions: <Widget>[
+              IconButton(icon: Icon(Icons.add), onPressed: (){})
+            ],
           ),
           body: SingleChildScrollView( //Make the wholde content under body scrollable
           child:Column(
@@ -38,7 +41,11 @@ class MyHome extends StatelessWidget {
                 UserTransactions(), //Rendering Lists of Transaction
               ]
               )
-              )
+              ),
+              floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+              floatingActionButton:FloatingActionButton(child: Icon(Icons.add),
+              onPressed: (){}) ,
+
               ),
     );
   }
