@@ -22,7 +22,8 @@ class MyHome extends StatelessWidget {
           appBar: AppBar(
             title: Text("Fultter App"),
           ),
-          body: Column(
+          body: SingleChildScrollView( //Make the wholde content under body scrollable
+          child:Column(
               //mainAxisAlignment: MainAxisAlignment  .spaceEvenly, // position element from top to bottom in columns vice versa in rows
               crossAxisAlignment: CrossAxisAlignment
                   .stretch, // position element from left to right in columns vice versa in rows
@@ -35,7 +36,10 @@ class MyHome extends StatelessWidget {
                     )),
                
                 UserTransactions(), //Rendering Lists of Transaction
-              ])),
+              ]
+              )
+              )
+              ),
     );
   }
 }
