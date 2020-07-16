@@ -17,7 +17,25 @@ class MyApp extends StatelessWidget
     theme: ThemeData(
       primarySwatch: Colors.purple,  //add theme to the app
       accentColor: Colors.amber, //alternate color if its not available primary color is used
-      
+      fontFamily: 'Quicksand',
+       textTheme: ThemeData.light().textTheme.copyWith(
+        headline6:TextStyle(
+          fontFamily: 'OpenSans',
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+        
+        )
+      ),
+      appBarTheme: AppBarTheme(
+        textTheme: ThemeData.light().textTheme.copyWith(
+         headline6: TextStyle(
+          fontFamily: 'OpenSans',
+          fontWeight: FontWeight.bold,
+          fontSize:20,
+          color:Colors.white,
+        ),       
+         )
+       ),
     ),
     home: MyHome()
     );
@@ -74,7 +92,7 @@ class _MyHomeState extends State<MyHome> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Fultter App"),
+          title: Text("Personal Expenses"),
           actions: <Widget>[
             IconButton(
                 icon: Icon(Icons.add),
