@@ -1,10 +1,14 @@
 import 'package:expense_planner/widgets/chart.dart';
 import 'package:expense_planner/widgets/new_transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import './models/transaction.dart';
 import 'widgets/transaction_list.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized(); // this is required for System Chrome to work
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]); // This is setting the mode to be portrait only not to be in landscape
   runApp(MyApp());
 }
 
@@ -51,7 +55,6 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
- 
   final List<Transaction> _userTransaction = [
     // Transaction(
     //     id: 't1', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
@@ -101,20 +104,18 @@ class _MyHomeState extends State<MyHome> {
         });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-     final appBar= AppBar(
-        title: Text("Personal Expenses"),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () => _startAddNewTransaction(context))
-        ],
-      );
+    final appBar = AppBar(
+      title: Text("Personal Expenses"),
+      actions: <Widget>[
+        IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () => _startAddNewTransaction(context))
+      ],
+    );
     return Scaffold(
-      appBar:appBar,
+      appBar: appBar,
       body: SingleChildScrollView(
           //Make the wholde content under body scrollable
           child: Column(
@@ -123,17 +124,22 @@ class _MyHomeState extends State<MyHome> {
                   .stretch, // position element from left to right in columns vice versa in rows
               children: <Widget>[
             Container(
-              height:(MediaQuery.of(context).size.height - appBar.preferredSize.height  // Create 30% of available height and subtract status and appbar height
-              -MediaQuery.of(context).padding.top)*0.3,
-              child: Chart(_recentTransactions)),
-
-
+                height: (MediaQuery.of(context).size.height -
+                        appBar.preferredSize
+                            .height // Create 30% of available height and subtract status and appbar height
+                        -
+                        MediaQuery.of(context).padding.top) *
+                    0.3,
+                child: Chart(_recentTransactions)),
 
             Container(
-               height:(MediaQuery.of(context).size.height - appBar.preferredSize.height  // Create 70% of available height and subtract status and appbar height
-              -MediaQuery.of(context).padding.top)*0.7,
-              child: TransactionList(_userTransaction,
-                  _deleteTransaction),
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize
+                          .height // Create 70% of available height and subtract status and appbar height
+                      -
+                      MediaQuery.of(context).padding.top) *
+                  0.7,
+              child: TransactionList(_userTransaction, _deleteTransaction),
             ), //Rendering Lists of Transaction
           ])),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
