@@ -106,6 +106,8 @@ class _MyHomeState extends State<MyHome> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     final appBar = AppBar(
       title: Text("Personal Expenses"),
       actions: <Widget>[
@@ -123,7 +125,8 @@ class _MyHomeState extends State<MyHome> {
               crossAxisAlignment: CrossAxisAlignment
                   .stretch, // position element from left to right in columns vice versa in rows
               children: <Widget>[
-            Row(
+           if(isLandscape)
+             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text("Show Chart"),
@@ -137,25 +140,51 @@ class _MyHomeState extends State<MyHome> {
                 )
               ],
             ),
+            
+            if(!isLandscape)
+            Container(
+                    height: (MediaQuery.of(context).size.height -
+                            appBar.preferredSize
+                                .height // Create 30% of available height and subtract status and appbar height
+                            -
+                            MediaQuery.of(context).padding.top) *
+                        0.3,
+                    child: Chart(_recentTransactions)),
 
-            _showChart? Container(
-                height: (MediaQuery.of(context).size.height -
-                        appBar.preferredSize
-                            .height // Create 30% of available height and subtract status and appbar height
-                        -
-                        MediaQuery.of(context).padding.top) *
-                    0.7,
-                child: Chart(_recentTransactions))
+            if(!isLandscape)
+            Container(
+                    height: (MediaQuery.of(context).size.height -
+                            appBar.preferredSize
+                                .height // Create 70% of available height and subtract status and appbar height
+                            -
+                            MediaQuery.of(context).padding.top) *
+                        0.7,
+                    child:
+                        TransactionList(_userTransaction, _deleteTransaction),
+                  ), 
 
-            : Container(
-              height: (MediaQuery.of(context).size.height -
-                      appBar.preferredSize
-                          .height // Create 70% of available height and subtract status and appbar height
-                      -
-                      MediaQuery.of(context).padding.top) *
-                  0.7,
-              child: TransactionList(_userTransaction, _deleteTransaction),
-            ), //Rendering Lists of Transaction
+            
+            if(isLandscape)
+
+            _showChart
+                ? Container(
+                    height: (MediaQuery.of(context).size.height -
+                            appBar.preferredSize
+                                .height // Create 30% of available height and subtract status and appbar height
+                            -
+                            MediaQuery.of(context).padding.top) *
+                        0.7,
+                    child: Chart(_recentTransactions))
+                : Container(
+                    height: (MediaQuery.of(context).size.height -
+                            appBar.preferredSize
+                                .height // Create 70% of available height and subtract status and appbar height
+                            -
+                            MediaQuery.of(context).padding.top) *
+                        0.7,
+                    child:
+                        TransactionList(_userTransaction, _deleteTransaction),
+                  ), //Rendering Lists of Transaction
           ])),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
