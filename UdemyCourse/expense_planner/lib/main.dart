@@ -123,15 +123,15 @@ class _MyHomeState extends State<MyHome> {
                   .stretch, // position element from left to right in columns vice versa in rows
               children: <Widget>[
             Container(
-              height:(MediaQuery.of(context).size.height - appBar.preferredSize.height  // Create 40% of available height and subtract status and appbar height
-              -MediaQuery.of(context).padding.top)*0.4,
+              height:(MediaQuery.of(context).size.height - appBar.preferredSize.height  // Create 30% of available height and subtract status and appbar height
+              -MediaQuery.of(context).padding.top)*0.3,
               child: Chart(_recentTransactions)),
 
 
 
             Container(
-               height:(MediaQuery.of(context).size.height - appBar.preferredSize.height  // Create 60% of available height and subtract status and appbar height
-              -MediaQuery.of(context).padding.top)*0.6,
+               height:(MediaQuery.of(context).size.height - appBar.preferredSize.height  // Create 70% of available height and subtract status and appbar height
+              -MediaQuery.of(context).padding.top)*0.7,
               child: TransactionList(_userTransaction,
                   _deleteTransaction),
             ), //Rendering Lists of Transaction
