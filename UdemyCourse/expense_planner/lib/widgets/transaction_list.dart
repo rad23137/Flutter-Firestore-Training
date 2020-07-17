@@ -46,7 +46,16 @@ class TransactionList extends StatelessWidget {
                   subtitle: Text(
                       DateFormat('yyyy/MMM/dd').format(transaction[index].date),
                       style: TextStyle(fontSize: 16, color: Colors.grey)),
-                  trailing: IconButton(
+                  trailing: MediaQuery.of(context).size.width >460 ? // SHow label only when size is greater than 460
+                  FlatButton.icon(
+                    onPressed: () {
+                        deleteTx(transaction[index].id);
+                      },
+                       icon:Icon(Icons.delete),
+                        label: Text("Delete"),
+                        textColor:Theme.of(context).errorColor ,) 
+
+                     :IconButton(
                       icon: Icon(Icons.delete),
                       color: Theme.of(context).errorColor,
                       onPressed: () {
