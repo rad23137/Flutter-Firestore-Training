@@ -1,14 +1,14 @@
 import 'package:expense_planner/widgets/chart.dart';
 import 'package:expense_planner/widgets/new_transaction.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 import './models/transaction.dart';
 import 'widgets/transaction_list.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized(); // this is required for System Chrome to work
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]); // This is setting the mode to be portrait only not to be in landscape
+  // WidgetsFlutterBinding.ensureInitialized(); // this is required for System Chrome to work
+  // SystemChrome.setPreferredOrientations(
+  //     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]); // This is setting the mode to be portrait only not to be in landscape
   runApp(MyApp());
 }
 
@@ -65,7 +65,7 @@ class _MyHomeState extends State<MyHome> {
     //   date: DateTime.now(),
     // )
   ];
-
+  bool _showChart = true;
   List<Transaction> get _recentTransactions {
     return _userTransaction.where((tx) {
       return tx.date.isAfter(DateTime.now().subtract((Duration(days: 7))));
@@ -123,16 +123,31 @@ class _MyHomeState extends State<MyHome> {
               crossAxisAlignment: CrossAxisAlignment
                   .stretch, // position element from left to right in columns vice versa in rows
               children: <Widget>[
-            Container(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text("Show Chart"),
+                Switch(
+                  value: _showChart,
+                  onChanged: (val) {
+                    setState(() {
+                      _showChart = val;
+                    });
+                  },
+                )
+              ],
+            ),
+
+            _showChart? Container(
                 height: (MediaQuery.of(context).size.height -
                         appBar.preferredSize
                             .height // Create 30% of available height and subtract status and appbar height
                         -
                         MediaQuery.of(context).padding.top) *
                     0.3,
-                child: Chart(_recentTransactions)),
+                child: Chart(_recentTransactions))
 
-            Container(
+            : Container(
               height: (MediaQuery.of(context).size.height -
                       appBar.preferredSize
                           .height // Create 70% of available height and subtract status and appbar height
