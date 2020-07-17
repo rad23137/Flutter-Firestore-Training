@@ -10,18 +10,21 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return transaction.isEmpty
-        ? Column(children: <Widget>[
+        ? LayoutBuilder(builder:(context, constraints)
+        {
+          return  Column(children: <Widget>[
             Text("No Transactions added Yet!",
                 style: Theme.of(context).textTheme.headline6),
             SizedBox(
-                height:
-                    10), // This is to create a box which shows gap between text and image we are just giving a height no content
+                height:10), // This is to create a box which shows gap between text and image we are just giving a height no content
             Container(
-              height: 200,
+              height: constraints.maxHeight *0.6,
               child:
                   Image.asset('assets/images/waiting.png', fit: BoxFit.cover),
             )
-          ])
+          ]);
+        })
+       
         : ListView.builder(
             itemCount: transaction.length,
             itemBuilder: (context, index) {

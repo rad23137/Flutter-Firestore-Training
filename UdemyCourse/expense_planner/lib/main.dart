@@ -144,7 +144,7 @@ class _MyHomeState extends State<MyHome> {
                             .height // Create 30% of available height and subtract status and appbar height
                         -
                         MediaQuery.of(context).padding.top) *
-                    0.3,
+                    0.7,
                 child: Chart(_recentTransactions))
 
             : Container(
