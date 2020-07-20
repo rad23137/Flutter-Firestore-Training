@@ -14,6 +14,7 @@ class CategoriesScreen extends StatelessWidget {
              CategoryItem(
             catData.title, catData.color),) 
             .toList(),
+            padding: const EdgeInsets.all(25),
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(  // grid delegate is required to make a grid scrollable and create a grid view
             maxCrossAxisExtent: 200,
             childAspectRatio: 3 / 2,
