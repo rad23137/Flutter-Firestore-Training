@@ -6,13 +6,20 @@ class CategoryItem extends StatelessWidget {
   final String title;
   final Color bgColor;
 
-  CategoryItem(this.id,this.title, this.bgColor);
+  CategoryItem(this.id, this.title, this.bgColor);
 
   void selectCategory(BuildContext ctx) {
-    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      // Navigation to a new page as new page is push as in stack
-      return CategoryMealsScreen(id,title); // returning the new page in MaterialPageRoute
-    }));
+    // Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+    //   // Navigation to a new page as new page is push as in stack
+    //   return CategoryMealsScreen(id,title); // returning the new page in MaterialPageRoute
+    // }));
+
+    Navigator.of(ctx).pushNamed(
+      '/category-meals',
+       arguments: {  // Named Route and arguments to be passed
+      'id': id,
+      'title': title,
+    });
   }
 
   @override
