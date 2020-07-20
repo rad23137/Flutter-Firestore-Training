@@ -34,8 +34,10 @@ class MyApp extends StatelessWidget {
     )
     ),
     home: CategoriesScreen(),
+    initialRoute: CategoriesScreen.routeName,  // The default route when application starts
     routes: {
-      '/category-meals': (ctx)=> CategoryMealsScreen(),
+      //CategoriesScreen.routeName: (ctx)=> CategoriesScreen(),
+      CategoryMealsScreen.routeName: (ctx)=> CategoryMealsScreen(), // using property name routeName to access screen 
     },);
     
 
