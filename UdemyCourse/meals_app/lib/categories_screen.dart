@@ -12,7 +12,7 @@ class CategoriesScreen extends StatelessWidget {
           children: DUMMY_CATEGORIES.map(   // Mapping list of dummy data into category Item and returning as a widget
             (catData)=>
              CategoryItem(
-            catData.title, catData.color),) 
+            catData.id,catData.title, catData.color),) 
             .toList(),
             padding: const EdgeInsets.all(25),
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(  // grid delegate is required to make a grid scrollable and create a grid view
