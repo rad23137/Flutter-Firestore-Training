@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:meals_app/screens/categories_screen.dart';
 import 'package:meals_app/screens/category_meals_screen.dart';
+import 'package:meals_app/screens/filters_screen.dart';
 import 'package:meals_app/screens/meal_detail_screen.dart';
 import 'package:meals_app/screens/tabs_screen.dart';
 
@@ -35,13 +36,14 @@ class MyApp extends StatelessWidget {
       ) 
     )
     ),
-   // home: CategoriesScreen(),
-    initialRoute: TabsScreen.routeName,  // The default route when application starts
+   home: TabsScreen(),
+    //initialRoute: TabsScreen.routeName,  // The default route when application starts
     routes: {
      // '/':(ctx) =>TabsScreen(),
       CategoriesScreen.routeName: (ctx)=> CategoriesScreen(),
       CategoryMealsScreen.routeName: (ctx)=> CategoryMealsScreen(), // using property name routeName to access screen 
       MealDetailScreen.routeName: (ctx)=> MealDetailScreen(),
+      FiltersScreen.routeName: (ctx)=> FiltersScreen(),
     },);
     
 
