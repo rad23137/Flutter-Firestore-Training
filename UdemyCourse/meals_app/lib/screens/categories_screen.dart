@@ -4,14 +4,10 @@ import 'package:meals_app/widgets/category_item.dart';
 import '../dummy_data.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  static const routeName = '/';
+  static const routeName = '/categories-screen';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Meals App'),
-      ),
-      body: GridView(
+    return GridView(
           children: DUMMY_CATEGORIES
               .map(
                 // Mapping list of dummy data into category Item and returning as a widget
@@ -26,7 +22,7 @@ class CategoriesScreen extends StatelessWidget {
             childAspectRatio: 3 / 2,
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
-          )),
+          )
     );
   }
 }
