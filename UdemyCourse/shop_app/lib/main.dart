@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/providers/cart.dart';
 import 'package:shop_app/providers/products.dart';
+import 'package:shop_app/screens/cart_screen.dart';
 import 'package:shop_app/screens/product_detail_screen.dart';
 import 'package:shop_app/screens/products_overview_screen.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
     ],
      // use create because new product will be created its better choice than value
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
           title: 'My Shop',
           theme: ThemeData(
             primarySwatch: Colors.purple,
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
           home: ProductsOverviewScreen(),
           routes: {
             ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
+            CartScreen.routeName:(context)=>CartScreen(),
           },
     )
     );

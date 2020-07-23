@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/providers/cart.dart';
 import 'package:shop_app/providers/product.dart';
 import 'package:shop_app/screens/product_detail_screen.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +17,8 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context,listen:false);
+    final product = Provider.of<Product>(context, listen: false);
+    final cart = Provider.of<Cart>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
@@ -32,8 +34,9 @@ class ProductItem extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           backgroundColor: Colors.black87,
-          leading: Consumer<Product>(               // whenever a change will happen in favorites only this part will rebuild
-                      builder: (ctx, product,child)=>IconButton(
+          leading: Consumer<Product>(
+            // whenever a change will happen in favorites only this part will rebuild
+            builder: (ctx, product, child) => IconButton(
               icon: Icon(
                 product.isFavorite ? Icons.favorite : Icons.favorite_border,
               ),
@@ -45,7 +48,9 @@ class ProductItem extends StatelessWidget {
           ),
           trailing: IconButton(
             icon: Icon(Icons.shopping_cart),
-            onPressed: () {},
+            onPressed: () {
+              cart.addItem(product.id, product.price, product.title);
+            },
             color: Theme.of(context).accentColor,
           ),
         ),
