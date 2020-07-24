@@ -1,6 +1,6 @@
 import 'providers/product.dart';
 
-List<Product> DUMMY_PRODUCTS =[
+  List<Product> DUMMY_PRODUCTS =[
   Product(
     id: 'p1',
     title: 'Red Shirt',
