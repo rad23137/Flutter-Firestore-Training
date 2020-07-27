@@ -40,6 +40,7 @@ class Products with ChangeNotifier {
 
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       final List<Product> loadedProducts = [];
+      if (extractedData == null) return;
       extractedData.forEach((prodId, prodData) {
         loadedProducts.add(Product(
             id: prodId,
@@ -108,17 +109,14 @@ class Products with ChangeNotifier {
         'https://flutter-project-f422c.firebaseio.com/products/$id.json';
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
     var existingProduct = _items[existingProductIndex];
-     _items.removeAt(existingProductIndex);
+    _items.removeAt(existingProductIndex);
     notifyListeners();
-    final response= await http.delete(url);
-      if (response.statusCode >= 400) {
-         _items.insert(existingProductIndex, existingProduct);
-            notifyListeners();
-        throw HttpException('Could not delete product');
-      }
-      existingProduct = null;
-
-
-   
+    final response = await http.delete(url);
+    if (response.statusCode >= 400) {
+      _items.insert(existingProductIndex, existingProduct);
+      notifyListeners();
+      throw HttpException('Could not delete product');
+    }
+    existingProduct = null;
   }
 }
