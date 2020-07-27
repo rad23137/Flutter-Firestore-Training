@@ -4,14 +4,11 @@ import 'package:provider/provider.dart';
 import 'package:shop_app/widgets/app_drawer.dart';
 import 'package:shop_app/widgets/order_item.dart';
 
-class OrderScreen extends StatefulWidget {
+class OrderScreen extends StatelessWidget {
   static const routeName = '/orders';
 
-  @override
-  _OrderScreenState createState() => _OrderScreenState();
-}
 
-class _OrderScreenState extends State<OrderScreen> {
+
   // var _isLoading = false;
   // @override
   // void initState() {

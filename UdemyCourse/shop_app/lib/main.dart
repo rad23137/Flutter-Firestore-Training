@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/providers/auth.dart';
 import 'package:shop_app/providers/cart.dart';
 import 'package:shop_app/providers/orders.dart';
 import 'package:shop_app/providers/products.dart';
+import 'package:shop_app/screens/auth_screen.dart';
 import 'package:shop_app/screens/cart_screen.dart';
 import 'package:shop_app/screens/edit_product_screen.dart';
 import 'package:shop_app/screens/orders_screen.dart';
@@ -25,7 +27,10 @@ class MyApp extends StatelessWidget {
         create: (ctx)=> Cart(),),
 
         ChangeNotifierProvider(
-          create: (ctx)=>Orders(),)
+          create: (ctx)=>Orders(),),
+          
+          ChangeNotifierProvider(
+            create: (ctx)=>Auth(),)
 
     ],
      // use create because new product will be created its better choice than value
@@ -38,7 +43,7 @@ class MyApp extends StatelessWidget {
             //fontFamily: 'Lato',
             
           ),
-          home: ProductsOverviewScreen(),
+          home: AuthScreen(),
           routes: {
             ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
             CartScreen.routeName:(context)=>CartScreen(),
