@@ -28,13 +28,14 @@ class MyApp extends StatelessWidget {
 
         ChangeNotifierProvider(
           create: (ctx)=>Orders(),),
-          
+
           ChangeNotifierProvider(
             create: (ctx)=>Auth(),)
 
     ],
      // use create because new product will be created its better choice than value
-      child: MaterialApp(
+      child: Consumer<Auth>(builder: (context,auth,_)=>
+       MaterialApp(
         debugShowCheckedModeBanner: false,
           title: 'My Shop',
           theme: ThemeData(
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
             //fontFamily: 'Lato',
             
           ),
-          home: AuthScreen(),
+          home: auth.isAuth? ProductsOverviewScreen(): AuthScreen(),
           routes: {
             ProductDetailScreen.routeName: (context) => ProductDetailScreen(),
             CartScreen.routeName:(context)=>CartScreen(),
@@ -51,7 +52,8 @@ class MyApp extends StatelessWidget {
             UserProductsScreen.routeName: (context)=> UserProductsScreen(),
             EditProductScreen.routeName: (context)=> EditProductScreen(),
           },
-    )
+    ))
+     
     );
   }
 }
