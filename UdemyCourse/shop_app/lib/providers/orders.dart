@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:shop_app/providers/cart.dart';
 import 'package:http/http.dart' as http;
@@ -19,13 +18,16 @@ class OrderItem {
 
 class Orders with ChangeNotifier {
   List<OrderItem> _orders = [];
+  final String authToken;
+
+  Orders(this.authToken, this._orders);
 
   List<OrderItem> get orders {
     return [..._orders];
   }
 
   Future<void> addOrder(List<CartItem> cartProducts, double total) async {
-    final url = 'https://flutter-project-f422c.firebaseio.com/orders.json';
+    final url = 'https://flutter-project-f422c.firebaseio.com/orders.json?auth=$authToken';
     final timestamp = DateTime.now();
     final response = await http.post(url,
         body: json.encode({
@@ -52,7 +54,7 @@ class Orders with ChangeNotifier {
   }
 
   Future<void> fetchAndSetOrders() async {
-    const url = 'https://flutter-project-f422c.firebaseio.com/orders.json';
+    final url = 'https://flutter-project-f422c.firebaseio.com/orders.json?auth=$authToken';
 
     final response = await http.get(url);
     final List<OrderItem> loadedOrder = [];
@@ -61,7 +63,7 @@ class Orders with ChangeNotifier {
     extractedData.forEach((orderId, orderData) {
       loadedOrder.add(OrderItem(
           id: orderId,
-          amount:double.parse( orderData['amount']),
+          amount: orderData['amount'],
           products: (orderData['products'] as List<dynamic>)
               .map((item) => CartItem(
                     id: item['id'],

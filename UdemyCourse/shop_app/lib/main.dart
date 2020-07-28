@@ -21,16 +21,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(providers: [  // USed to use multiple providers in a same file
-      ChangeNotifierProvider(
-      create: (ctx)=> Products()), 
+
+       ChangeNotifierProvider(
+            create: (ctx)=>Auth()),
+
+      ChangeNotifierProxyProvider<Auth,Products>(
+        create: null,
+        update:(ctx,auth,previousProducts)=> Products(auth.token,auth.userId,previousProducts== null ? [] : previousProducts.items),
+
+      ), 
+         ChangeNotifierProxyProvider <Auth,Orders>(
+         create: null,
+          update: (ctx,auth,previousOrders)=> Orders(auth.token, previousOrders== null ? [] : previousOrders.orders),
+          ), 
       ChangeNotifierProvider(
         create: (ctx)=> Cart(),),
 
-        ChangeNotifierProvider(
-          create: (ctx)=>Orders(),),
-
-          ChangeNotifierProvider(
-            create: (ctx)=>Auth(),)
+     
 
     ],
      // use create because new product will be created its better choice than value

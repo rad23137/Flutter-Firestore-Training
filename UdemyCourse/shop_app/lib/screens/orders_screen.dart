@@ -7,8 +7,6 @@ import 'package:shop_app/widgets/order_item.dart';
 class OrderScreen extends StatelessWidget {
   static const routeName = '/orders';
 
-
-
   // var _isLoading = false;
   // @override
   // void initState() {
@@ -35,9 +33,10 @@ class OrderScreen extends StatelessWidget {
                 Provider.of<Orders>(context, listen: false).fetchAndSetOrders(),
             builder: (context, dataSnapshot) {
               if (dataSnapshot.connectionState == ConnectionState.waiting) {
-               return Center(child: CircularProgressIndicator());
+                return Center(child: CircularProgressIndicator());
               }
               if (dataSnapshot.error != null) {
+                print(dataSnapshot.error);
                 return Center(
                   child: Text('An  error Occured'),
                 );

@@ -18,15 +18,15 @@ class Product with ChangeNotifier {
       @required this.imageUrl,
       this.isFavorite = false});
 
-  Future<void> toggleFavoriteStatus() async {
+  Future<void> toggleFavoriteStatus(String authToken, String userId) async {
     final oldStatus = isFavorite;
     isFavorite = !isFavorite;
     notifyListeners();
     final url =
-        'https://flutter-project-f422c.firebaseio.com/products/$id.json';
+        'https://flutter-project-f422c.firebaseio.com/userFavorites/$userId/$id.json?auth=$authToken';
     try {
       final response =
-          await http.patch(url, body: json.encode({'isFavorite': isFavorite}));
+          await http.put(url, body: json.encode( isFavorite));
           if(response.statusCode>=400)
           {
             isFavorite = oldStatus;
