@@ -8,6 +8,7 @@ class Product with ChangeNotifier {
   final String description;
   final double price;
   final String imageUrl;
+  final String userId;
   bool isFavorite;
 
   Product(
@@ -16,6 +17,7 @@ class Product with ChangeNotifier {
       @required this.description,
       @required this.price,
       @required this.imageUrl,
+      @required this.userId,
       this.isFavorite = false});
 
   Future<void> toggleFavoriteStatus(String authToken, String userId) async {
@@ -25,13 +27,11 @@ class Product with ChangeNotifier {
     final url =
         'https://flutter-project-f422c.firebaseio.com/userFavorites/$userId/$id.json?auth=$authToken';
     try {
-      final response =
-          await http.put(url, body: json.encode( isFavorite));
-          if(response.statusCode>=400)
-          {
-            isFavorite = oldStatus;
-      notifyListeners();
-          }
+      final response = await http.put(url, body: json.encode(isFavorite));
+      if (response.statusCode >= 400) {
+        isFavorite = oldStatus;
+        notifyListeners();
+      }
     } catch (error) {
       isFavorite = oldStatus;
       notifyListeners();
